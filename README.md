@@ -10,10 +10,10 @@ Download and install Python from [python.org](https://www.python.org/downloads/)
 
 ### yfinance
 Install yfinance using pip:
-```bash
+pip install y finance
+
 
 # Announcements
-
 Database update incoming
 
 # Notes
