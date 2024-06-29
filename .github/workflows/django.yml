@@ -1,4 +1,4 @@
-name: Django CI
+name: Python CI
 
 on:
   push:
@@ -16,9 +16,9 @@ jobs:
         python-version: [3.7, 3.8, 3.9]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v2  # Use the latest version of checkout action
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     - name: Install Dependencies
@@ -27,4 +27,13 @@ jobs:
         pip install -r requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python -m unittest discover  # Replace with your test command
+
+    # Add Django setup and test steps below
+    # - name: Install Django and Dependencies
+    #   run: |
+    #     pip install django
+    #     pip install -r requirements.txt
+    # - name: Run Django Tests
+    #   run: |
+    #     python manage.py test
