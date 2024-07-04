@@ -1,13 +1,15 @@
 from StockSplits import get_stock_splits
 from SharesOutstanding import get_shares_outstanding
-from DataFrame import get_ticker_data  # Assuming get_ticker_data is implemented in DataFrame.py
+from DataFrame import get_ticker_data 
+from ForwardPE import get_forward_pe
 
 def display_menu():
     print("\nMenu:")
     print("1. Get Stock Splits")
     print("2. Get Shares Outstanding")
     print("3. Get Ticker Data")
-    print("4. Exit")
+    print("4. Get Forward P/E Ratio")
+    print("5. Exit")
 
 def handle_stock_splits(ticker):
     splits_data = get_stock_splits(ticker)
@@ -32,6 +34,14 @@ def handle_ticker_data(ticker):
     else:
         print(f"Failed to retrieve data for {ticker}")
 
+def handle_forward_pe(ticker):
+    forward_pe_ratio = get_forward_pe(ticker)
+    if forward_pe_ratio is not None:
+        print(f"Forward P/E Ratio for {ticker}: {forward_pe_ratio}")
+    else:
+        print(f"Failed to retrieve forward P/E ratio for {ticker}")
+
+
 def main():
     ticker_symbol = input("Enter the ticker symbol: ")
 
@@ -50,11 +60,14 @@ def main():
             handle_ticker_data(ticker_symbol)
         
         elif choice == '4':
+            handle_forward_pe(ticker_symbol)
+        
+        elif choice == '5':
             print("Exiting...")
             break
         
         else:
-            print("Invalid choice. Please enter 1, 2, 3, or 4.")
+            print("Invalid choice. Please enter 1, 2, 3, 4, or 5.")
 
 if __name__ == "__main__":
     main()
